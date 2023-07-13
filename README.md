@@ -10,5 +10,13 @@ The implementation was done on Google colab. Images were downloaded on to google
 
 ## Evaluation:
 
+## Install Requirements:
+For installing the requirements for this software, please run the following: 
+
+ ```
+ pip install -r requirements.txt
+ ```
+  
+
 ## Dataset
 https://www.kaggle.com/datasets/jessicali9530/stanford-cars-dataset
