@@ -5,7 +5,7 @@ DCGAN uses convolutional and convolutional-transpose layers in the generator and
 
 The implementation was done on Google colab. Images were downloaded on to google drive and subsequently used in the notebook. 
 
-
+Refer  ``` Training_code.ipynb``` for the training code.
 
 ## Install Requirements:
 For installing the requirements for this software, please run the following: 
