@@ -2,10 +2,13 @@ import torch
 import torch.nn as nn
 
 IMAGE_DIM = (32, 32, 3)
+
+
 class Discriminator(nn.Module):
     """
         Convolutional Discriminator for MNIST
     """
+
     def __init__(self, in_channel=1, num_classes=1):
         super(Discriminator, self).__init__()
         self.conv = nn.Sequential(
@@ -38,18 +41,19 @@ class Discriminator(nn.Module):
         y_ = y_.view(y_.size(0), -1)
         y_ = self.fc(y_)
         return y_
-    
+
 
 class Generator(nn.Module):
     """
         Convolutional Generator for MNIST
     """
+
     def __init__(self, out_channel=1, input_size=100, num_classes=784):
         super(Generator, self).__init__()
         assert IMAGE_DIM[0] % 2**4 == 0, 'Should be divided 16'
         self.init_dim = (IMAGE_DIM[0] // 2**4, IMAGE_DIM[1] // 2**4)
         self.fc = nn.Sequential(
-            nn.Linear(input_size, self.init_dim[0]*self.init_dim[1]*512),
+            nn.Linear(input_size, self.init_dim[0] * self.init_dim[1] * 512),
             nn.ReLU(),
         )
         self.conv = nn.Sequential(
@@ -69,7 +73,13 @@ class Generator(nn.Module):
             nn.BatchNorm2d(128),
             nn.ReLU(),
             # x2
-            nn.ConvTranspose2d(128, out_channel, 4, stride=2, padding=1, bias=False),
+            nn.ConvTranspose2d(
+                128,
+                out_channel,
+                4,
+                stride=2,
+                padding=1,
+                bias=False),
             nn.Tanh(),
         )
 
@@ -78,4 +88,4 @@ class Generator(nn.Module):
         y_ = self.fc(x)
         y_ = y_.view(y_.size(0), 512, self.init_dim[0], self.init_dim[1])
         y_ = self.conv(y_)
-        return y_    
+        return y_
